@@ -86,5 +86,14 @@
     "hooks": {
       "pre-push": "npm run prettier-check"
     }
+  },
+  "bugs": {
+    "url": "https://github.com/tuttinator/react-dropzone-uploader/issues"
+  },
+  "homepage": "https://github.com/tuttinator/react-dropzone-uploader#readme",
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "tests"
   }
 }
