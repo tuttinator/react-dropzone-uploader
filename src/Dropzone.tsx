@@ -340,7 +340,7 @@ class Dropzone extends React.Component<IDropzoneProps, { active: boolean; dragge
   }
 
   handleRemove = (fileWithMeta: IFileWithMeta) => {
-    const index = this.files.findIndex(f => f === fileWithMeta)
+    const index = this.files.findIndex((f) => f === fileWithMeta)
     if (index !== -1) {
       URL.revokeObjectURL(fileWithMeta.meta.previewUrl || '')
       fileWithMeta.meta.status = 'removed'
@@ -452,7 +452,7 @@ class Dropzone extends React.Component<IDropzoneProps, { active: boolean; dragge
 
     const fileCallbackToPromise = (fileObj: HTMLImageElement | HTMLAudioElement) => {
       return Promise.race([
-        new Promise(resolve => {
+        new Promise((resolve) => {
           if (fileObj instanceof HTMLImageElement) fileObj.onload = resolve
           else fileObj.onloadedmetadata = resolve
         }),
@@ -501,7 +501,7 @@ class Dropzone extends React.Component<IDropzoneProps, { active: boolean; dragge
     try {
       params = await getUploadParams(fileWithMeta)
     } catch (e) {
-      console.error('Error Upload Params', e.stack)
+      console.error('Error Upload Params', (e as any).stack)
     }
     if (params === null) return
     const { url, method = 'POST', body, fields = {}, headers = {}, meta: extraMeta = {} } = params
@@ -524,7 +524,7 @@ class Dropzone extends React.Component<IDropzoneProps, { active: boolean; dragge
     fileWithMeta.meta = { ...fileWithMeta.meta, ...extraMeta }
 
     // update progress (can be used to show progress indicator)
-    xhr.upload.addEventListener('progress', e => {
+    xhr.upload.addEventListener('progress', (e) => {
       fileWithMeta.meta.percent = (e.loaded * 100.0) / e.total || 100
       this.forceUpdate()
     })
@@ -591,7 +591,7 @@ class Dropzone extends React.Component<IDropzoneProps, { active: boolean; dragge
 
     const { active, dragged } = this.state
 
-    const reject = dragged.some(file => file.type !== 'application/x-moz-file' && !accepts(file as File, accept))
+    const reject = dragged.some((file) => file.type !== 'application/x-moz-file' && !accepts(file as File, accept))
     const extra = { active, reject, dragged, accept, multiple, minSizeBytes, maxSizeBytes, maxFiles } as IExtra
     const files = [...this.files]
     const dropzoneDisabled = resolveValue(disabled, files, extra)
@@ -632,7 +632,7 @@ class Dropzone extends React.Component<IDropzoneProps, { active: boolean; dragge
 
     let previews = null
     if (PreviewComponent !== null) {
-      previews = files.map(f => {
+      previews = files.map((f) => {
         return (
           //@ts-ignore
           <Preview
